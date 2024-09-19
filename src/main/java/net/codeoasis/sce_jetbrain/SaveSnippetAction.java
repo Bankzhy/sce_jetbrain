@@ -24,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.net.URLEncoder;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class SaveSnippetAction extends AnAction {
 
@@ -79,6 +80,12 @@ public class SaveSnippetAction extends AnAction {
         }
     }
 
+    String formatLanguage(Language language) {
+        String lang = language.getDisplayName();
+        lang = lang.toLowerCase();
+        return lang;
+    }
+
     private void sendSnippetToServer(String snippet, AnActionEvent e) {
 
         // Check if the user is already logged in (by checking locally stored data)
@@ -104,7 +111,6 @@ public class SaveSnippetAction extends AnAction {
             HttpClient client = HttpClient.newHttpClient();
 
             // Prepare the data (URL encoding the snippet to be safely transmitted)
-            String encodedSnippet = URLEncoder.encode(snippet, StandardCharsets.UTF_8.toString());
             Language currentLanguage = LanguageUtil.getCurrentLanguage(project, e);
 
             JSONObject json = new JSONObject();
@@ -113,7 +119,7 @@ public class SaveSnippetAction extends AnAction {
             json.put("snippet_path", "root");
             json.put("keyword", "root,jetbrain,"+projectName);
             json.put("snippet", snippet);
-            json.put("snippet_language", currentLanguage.toString());
+            json.put("snippet_language", formatLanguage(currentLanguage));
 
             // Build the HTTP POST request
             HttpRequest request = HttpRequest.newBuilder()
