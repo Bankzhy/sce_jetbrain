@@ -22,12 +22,16 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <notificationGroup id="Snippet Save Notification" displayType="BALLOON" />
+        <notificationGroup id="Snippet Save Notification" displayType="BALLOON"/>
+        <notificationGroup id="Login Notification" displayType="BALLOON"/>
     </extensions>
     <actions>
-        <action id="SaveSnippet" class="net.codeoasis.sce_jetbrain.SaveSnippetAction" text="SaveSnippet"
+        <action id="SaveSnippet" class="net.codeoasis.sce_jetbrain.SaveSnippetAction" text="Save Snippet"
                 description="SaveSnippet" icon="/icons/16-icon.png">
             <add-to-group group-id="EditorPopupMenu"/>
+        </action>
+        <action id="LoginAction" class="net.codeoasis.sce_jetbrain.LoginAction" text="Code Oasis Login" description="Login Code Oasis"   icon="/icons/16-icon.png">
+            <add-to-group group-id="ToolsMenu" />
         </action>
     </actions>
 </idea-plugin>

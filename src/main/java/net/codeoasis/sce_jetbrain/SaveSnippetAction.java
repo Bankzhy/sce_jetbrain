@@ -146,7 +146,6 @@ public class SaveSnippetAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        Project project = e.getProject();
         Editor editor = e.getData(com.intellij.openapi.actionSystem.CommonDataKeys.EDITOR);
 
         if (editor != null) {
