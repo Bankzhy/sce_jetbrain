@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Sce_jetbrain</name>
+    <name>Code Oasis</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="kubusame.company@gmail.com" url="https://www.codeoasis.net">KUBUSAME</vendor>

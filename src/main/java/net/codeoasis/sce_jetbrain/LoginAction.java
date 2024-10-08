@@ -1,19 +1,17 @@
 package net.codeoasis.sce_jetbrain;
 
+import com.google.gson.Gson;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
-import net.minidev.json.JSONObject;
-import net.minidev.json.parser.JSONParser;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginAction extends AnAction {
 
@@ -36,27 +34,35 @@ public class LoginAction extends AnAction {
             HttpClient client = HttpClient.newHttpClient();
 
             // Prepare the data (URL encoding the snippet to be safely transmitted)
-            JSONObject json = new JSONObject();
-            json.put("username", username);
-            json.put("password", password);
+//            JSONObject json = new JSONObject();
+//            json.put("username", username);
+//            json.put("password", password);
+            Map<String, String> postData = new HashMap<>();
+            postData.put("username", username);
+            postData.put("password", password);
+            Gson gson = new Gson();
+            String json = gson.toJson(postData);
 
             // Build the HTTP POST request
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://www.codeoasis.net:8005/clogin/"))  // Replace with your server's URL
                     .header("Content-Type", "application/json")  // Set Content-Type header
-                    .POST(HttpRequest.BodyPublishers.ofString(json.toString()))       // Attach the request body
+                    .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body
                     .build();
 
             // Send the request asynchronously
             HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
-                JSONParser jsonParser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(response.body().toString());
+//                JSONParser jsonParser = new JSONParser();
+//                JSONObject jsonObject = (JSONObject) jsonParser.parse(response.body().toString());
+
+                Map<String, Object> result = gson.fromJson(response.body().toString(), Map.class);
+
                 LoginManager.saveUserDataLocally(
-                        jsonObject.getAsString("username"),
-                        jsonObject.getAsString("access"),
-                        jsonObject.getAsString("userId"),
-                        jsonObject.getAsString("refresh")
+                        result.get("username").toString(),
+                        result.get("access").toString(),
+                        String.valueOf(result.get("password")),
+                        result.get("refresh").toString()
                 );
                 showNotification("Login successfully!");
             } else {
