@@ -13,7 +13,7 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[The Jetbrain plugin for Code Oasis. You can access the www.codeoasis.net to check the detail.]]></description>
+    <description><![CDATA[A Code Oasis plugin for JetBrains IDEs' to manage your code snippets. You can access the www.codeoasis.net to check the detail.]]></description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
