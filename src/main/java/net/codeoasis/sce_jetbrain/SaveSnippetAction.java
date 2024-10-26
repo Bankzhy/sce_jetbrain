@@ -37,50 +37,6 @@ public class SaveSnippetAction extends AnAction {
         Notifications.Bus.notify(notification);
     }
 
-    protected void doOKAction(String username, String password) {
-
-        // Call the login method from LoginManager
-        try {
-            // Create an HttpClient instance
-            HttpClient client = HttpClient.newHttpClient();
-
-            // Prepare the data (URL encoding the snippet to be safely transmitted)
-            Map<String, String> postData = new HashMap<>();
-            postData.put("username", username);
-            postData.put("password", password);
-            Gson gson = new Gson();
-            String json = gson.toJson(postData);
-
-            // Build the HTTP POST request
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://www.codeoasis.net:8005/clogin/"))  // Replace with your server's URL
-                    .header("Content-Type", "application/json")  // Set Content-Type header
-                    .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body
-                    .build();
-
-            // Send the request asynchronously
-            HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 200) {
-                Map<String, Object> result = gson.fromJson(response.body().toString(), Map.class);
-
-                LoginManager.saveUserDataLocally(
-                        result.get("username").toString(),
-                        result.get("access").toString(),
-                        String.valueOf(result.get("password")),
-                        result.get("refresh").toString()
-                );
-                showNotification("Login successfully!");
-            } else {
-                showNotification("login failed! The error code:" + response.statusCode());
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     String formatLanguage(Language language) {
         String lang = language.getDisplayName();
         lang = lang.toLowerCase();
@@ -96,7 +52,7 @@ public class SaveSnippetAction extends AnAction {
             if (loginDialog.showAndGet()) {  // If the user clicked "OK"
                 String username = loginDialog.getUsername();
                 String password = loginDialog.getPassword();
-                doOKAction(username, password);
+                OasisActivator.doOKAction(username, password);
             } else {
                 showNotification("Login canceled!");
                 return;  // Exit without sending the snippet
@@ -113,14 +69,6 @@ public class SaveSnippetAction extends AnAction {
 
             // Prepare the data (URL encoding the snippet to be safely transmitted)
             Language currentLanguage = LanguageUtil.getCurrentLanguage(project, e);
-
-//            JSONObject json = new JSONObject();
-//            json.put("snippet_id", -1);
-//            json.put("snippet_name", "auto");
-//            json.put("snippet_path", "root");
-//            json.put("keyword", "root,jetbrain,"+projectName);
-//            json.put("snippet", snippet);
-//            json.put("snippet_language", formatLanguage(currentLanguage));
             Map<String, Object> postData = new HashMap<>();
             postData.put("snippet_id", -1);
             postData.put("snippet_name", "auto");
@@ -142,13 +90,11 @@ public class SaveSnippetAction extends AnAction {
 
             HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 201) {
-//                JSONParser jsonParser = new JSONParser();
-//                JSONObject jsonObject = (JSONObject) jsonParser.parse(response.body().toString());
                 Map<String, Object> result = gson.fromJson(response.body().toString(), Map.class);
-
-
                 showNotification("Code Snippet Save Successfully!");
-            } else {
+            } else if(response.statusCode() == 401) {
+                OasisActivator.showUnLoginNotification();
+            }else {
                 showNotification("Save failed! The error code:" + response.statusCode());
             }
 

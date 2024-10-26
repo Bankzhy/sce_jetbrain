@@ -19,6 +19,14 @@ public class LoginManager {
         return properties.getValue("username");
     }
 
+    // Retrieve userid
+    public static String getUserId() {
+        PropertiesComponent properties = PropertiesComponent.getInstance();
+        String value = properties.getValue("userId");
+        value = "**********"+value;
+        return properties.getValue(value);
+    }
+
     public static String getAccess() {
         PropertiesComponent properties = PropertiesComponent.getInstance();
         return properties.getValue("access");

@@ -23,7 +23,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="Snippet Save Notification" displayType="BALLOON"/>
-        <notificationGroup id="Login Notification" displayType="BALLOON"/>
+        <postStartupActivity implementation="net.codeoasis.sce_jetbrain.OasisStartupActivity" />
     </extensions>
     <actions>
         <action id="SaveSnippet" class="net.codeoasis.sce_jetbrain.SaveSnippetAction" text="Save Snippet"
