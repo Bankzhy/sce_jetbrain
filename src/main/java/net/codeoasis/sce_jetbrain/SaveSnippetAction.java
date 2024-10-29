@@ -75,6 +75,7 @@ public class SaveSnippetAction extends AnAction {
             postData.put("snippet_path", "root");
             postData.put("keyword", "root,jetbrain,"+projectName);
             postData.put("snippet", snippet);
+            postData.put("add_time", OasisActivator.getCurrentFormatTime());
             postData.put("snippet_language", formatLanguage(currentLanguage));
 
             Gson gson = new Gson();
