@@ -124,11 +124,15 @@ public class OasisActivator {
             HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
                 Map<String, Object> result = gson.fromJson(response.body().toString(), Map.class);
+//                System.out.println(String.valueOf((int)Math.round(result.get("user_id"))));
+                double userId = (double)result.get("user_id");
+                int userIDInt = (int)userId;
+                String userIDStr = String.valueOf(userIDInt);
 
                 LoginManager.saveUserDataLocally(
                         result.get("username").toString(),
                         result.get("access").toString(),
-                        String.valueOf(result.get("user_id")),
+                        userIDStr,
                         result.get("refresh").toString()
                 );
 //                showNotification("Login successfully!");

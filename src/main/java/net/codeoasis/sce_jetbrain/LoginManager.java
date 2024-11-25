@@ -24,7 +24,7 @@ public class LoginManager {
         PropertiesComponent properties = PropertiesComponent.getInstance();
         String value = properties.getValue("userId");
         value = "**********"+value;
-        return properties.getValue(value);
+        return value;
     }
 
     public static String getAccess() {
