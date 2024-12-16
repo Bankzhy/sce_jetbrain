@@ -26,8 +26,12 @@
         <postStartupActivity implementation="net.codeoasis.sce_jetbrain.OasisStartupActivity" />
     </extensions>
     <actions>
-        <action id="SaveSnippet" class="net.codeoasis.sce_jetbrain.SaveSnippetAction" text="Save Snippet"
-                description="SaveSnippet" icon="/icons/16-icon.png">
+        <action id="SaveSnippet" class="net.codeoasis.sce_jetbrain.SaveSnippetAction" text="Save as Snippet"
+                description="Save as snippet" icon="/icons/16-icon.png">
+            <add-to-group group-id="EditorPopupMenu"/>
+        </action>
+        <action id="SaveKnowledgeCard" class="net.codeoasis.sce_jetbrain.SaveKnowledgeCardAction" text="Save as Knowledge Card"
+                description="Save as knowledge card" icon="/icons/16-icon.png">
             <add-to-group group-id="EditorPopupMenu"/>
         </action>
         <action id="LoginAction" class="net.codeoasis.sce_jetbrain.LoginAction" text="Code Oasis Login" description="Login Code Oasis"   icon="/icons/16-icon.png">

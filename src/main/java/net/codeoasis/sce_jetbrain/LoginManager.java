@@ -23,7 +23,7 @@ public class LoginManager {
     public static String getUserId() {
         PropertiesComponent properties = PropertiesComponent.getInstance();
         String value = properties.getValue("userId");
-        value = "**********"+value;
+        value = "*****"+value;
         return value;
     }
 
