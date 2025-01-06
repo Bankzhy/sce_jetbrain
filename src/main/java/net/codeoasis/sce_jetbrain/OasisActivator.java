@@ -455,7 +455,13 @@ public class OasisActivator {
             } else {
                 System.out.println(heartbeat.lineCount);
                 System.out.println(sendHeartbeats.get(existIndex).lineCount);
-                sendHeartbeats.get(existIndex).lineChange += (heartbeat.lineCount - sendHeartbeats.get(existIndex).lineCount);
+
+                int lineChange = heartbeat.lineCount - sendHeartbeats.get(existIndex).lineCount;
+                if (lineChange < 0) {
+                    lineChange = 0;
+                }
+
+                sendHeartbeats.get(existIndex).lineChange += lineChange;
                 sendHeartbeats.get(existIndex).lineCount = heartbeat.lineCount;
                 BigDecimal second_duration = heartbeat.timestamp.subtract(sendHeartbeats.get(existIndex).timestamp);
                 if (second_duration.compareTo(FREQUENCY)==-1) {
