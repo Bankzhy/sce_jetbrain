@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain;
+package com.gras_code.sce_jetbrain;
 
 import com.intellij.openapi.ui.DialogWrapper;
 import org.jetbrains.annotations.Nullable;
@@ -12,7 +12,7 @@ public class LoginDialog extends DialogWrapper {
 
     public LoginDialog() {
         super(true); // use current window as parent
-        setTitle("Login to the Code Oasis");
+        setTitle("Login to the GRAS");
         init();  // Initializes the dialog
     }
 
@@ -22,7 +22,7 @@ public class LoginDialog extends DialogWrapper {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3, 2));
 
-        panel.add(new JLabel("Please login to the Code Oasis."));
+        panel.add(new JLabel("Please login to the GRAS."));
         panel.add(new JLabel(""));
         panel.add(new JLabel("Username:"));
         usernameField = new JTextField(20);

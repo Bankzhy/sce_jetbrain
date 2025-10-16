@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain;
+package com.gras_code.sce_jetbrain;
 
 import com.intellij.openapi.ui.DialogWrapper;
 import org.jetbrains.annotations.Nullable;
@@ -15,7 +15,7 @@ public class UserInfoDialog extends DialogWrapper {
 
     public UserInfoDialog() {
         super(true); // use current window as parent
-        setTitle("Login to the Code Oasis");
+        setTitle("Login to the GRAS");
         init();  // Initializes the dialog
     }
 

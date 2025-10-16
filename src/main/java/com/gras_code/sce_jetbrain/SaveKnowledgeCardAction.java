@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain;
+package com.gras_code.sce_jetbrain;
 
 import com.google.gson.Gson;
 import com.intellij.lang.Language;
@@ -23,7 +23,7 @@ public class SaveKnowledgeCardAction extends AnAction {
     private void showNotification(String content) {
         Notification notification = new Notification(
                 "Snippet Save Notification",  // Notification Group ID (can be used to categorize notifications)
-                "Code Oasis",               // Title of the notification
+                "GRAS",               // Title of the notification
                 content,                      // Content of the notification
                 NotificationType.INFORMATION  // Type of notification (e.g., INFORMATION, WARNING, ERROR)
         );
@@ -72,7 +72,7 @@ public class SaveKnowledgeCardAction extends AnAction {
 
             // Build the HTTP POST request
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://www.codeoasis.net:8005/api/knowledge_card_from_text_task/"))  // Replace with your server's URL
+                    .uri(URI.create("http://www.gras-code.com/backend/api/knowledge_card_from_text_task/"))  // Replace with your server's URL
                     .header("Content-Type", "application/json")  // Set Content-Type header
                     .header("Authorization", "Bearer " + LoginManager.getAccess())
                     .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body

@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain;
+package com.gras_code.sce_jetbrain;
 
 import com.google.gson.Gson;
 import com.intellij.notification.Notification;
@@ -6,12 +6,6 @@ import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginAction extends AnAction {
     @Override

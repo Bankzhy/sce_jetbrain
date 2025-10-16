@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain;
+package com.gras_code.sce_jetbrain;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

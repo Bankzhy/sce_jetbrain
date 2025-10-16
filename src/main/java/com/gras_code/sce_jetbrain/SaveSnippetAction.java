@@ -1,11 +1,10 @@
-package net.codeoasis.sce_jetbrain;
+package com.gras_code.sce_jetbrain;
 
 import com.google.gson.Gson;
 import com.intellij.lang.Language;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 
-import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
 import com.intellij.openapi.project.Project;
@@ -17,12 +16,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.net.URLEncoder;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class SaveSnippetAction extends AnAction {
@@ -30,7 +25,7 @@ public class SaveSnippetAction extends AnAction {
     private void showNotification(String content) {
         Notification notification = new Notification(
                 "Snippet Save Notification",  // Notification Group ID (can be used to categorize notifications)
-                "Code Oasis",               // Title of the notification
+                "GRAS",               // Title of the notification
                 content,                      // Content of the notification
                 NotificationType.INFORMATION  // Type of notification (e.g., INFORMATION, WARNING, ERROR)
         );
@@ -83,7 +78,7 @@ public class SaveSnippetAction extends AnAction {
 
             // Build the HTTP POST request
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://www.codeoasis.net:8005/api/snippet/"))  // Replace with your server's URL
+                    .uri(URI.create("http://www.gras-code.com/backend/api/snippet/"))  // Replace with your server's URL
                     .header("Content-Type", "application/json")  // Set Content-Type header
                     .header("Authorization", "Bearer " + LoginManager.getAccess())
                     .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body

@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain;
+package com.gras_code.sce_jetbrain;
 
 import com.google.gson.Gson;
 import com.intellij.AppTopics;
@@ -16,9 +16,9 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.messages.MessageBusConnection;
 import com.intellij.openapi.editor.*;
-import net.codeoasis.sce_jetbrain.listeners.CustomDocumentListener;
-import net.codeoasis.sce_jetbrain.models.Heartbeat;
-import net.codeoasis.sce_jetbrain.models.LineStats;
+import com.gras_code.sce_jetbrain.listeners.CustomDocumentListener;
+import com.gras_code.sce_jetbrain.models.Heartbeat;
+import com.gras_code.sce_jetbrain.models.LineStats;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import java.awt.*;
 import java.math.BigDecimal;
@@ -27,20 +27,16 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
-import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.intellij.openapi.fileTypes.FileType;
-import net.codeoasis.sce_jetbrain.models.SendHeartbeat;
+import com.gras_code.sce_jetbrain.models.SendHeartbeat;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.stream.Collectors;
 import java.util.Map;
 import com.intellij.openapi.project.ProjectManager;
 
@@ -115,7 +111,7 @@ public class OasisActivator {
 
             // Build the HTTP POST request
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://www.codeoasis.net:8005/clogin/"))  // Replace with your server's URL
+                    .uri(URI.create("http://www.gras-code.com/backend/clogin/"))  // Replace with your server's URL
                     .header("Content-Type", "application/json")  // Set Content-Type header
                     .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body
                     .build();
@@ -184,7 +180,7 @@ public class OasisActivator {
     private static void showNotification(String content) {
         Notification notification = new Notification(
                 "Snippet Save Notification",  // Notification Group ID (can be used to categorize notifications)
-                "Code Oasis",               // Title of the notification
+                "GRAS",               // Title of the notification
                 content,                      // Content of the notification
                 NotificationType.INFORMATION  // Type of notification (e.g., INFORMATION, WARNING, ERROR)
         );
@@ -194,15 +190,15 @@ public class OasisActivator {
     public static void notifyError(Project project, String content) {
         NotificationGroupManager.getInstance()
                 .getNotificationGroup("Snippet Save Notification")
-                .createNotification("Code Oasis", content, NotificationType.INFORMATION)
+                .createNotification("GRAS", content, NotificationType.INFORMATION)
                 .notify(project);
     }
 
     public static void showUnLoginNotification() {
         Notification notification = new Notification(
                 "Snippet Save Notification",  // Notification Group ID (can be used to categorize notifications)
-                "Code Oasis",               // Title of the notification
-                "Your account is not login to the Code Oasis.",                      // Content of the notification
+                "GRAS",               // Title of the notification
+                "Your account is not login to the GRAS.",                      // Content of the notification
                 NotificationType.INFORMATION  // Type of notification (e.g., INFORMATION, WARNING, ERROR)
         );
 
@@ -490,7 +486,7 @@ public class OasisActivator {
 
                 // Build the HTTP POST request
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://www.codeoasis.net:8005/api/jetbrain_log/"))  // Replace with your server's URL
+                        .uri(URI.create("http://www.gras-code.com/backend/api/jetbrain_log/"))  // Replace with your server's URL
                         .header("Content-Type", "application/json")  // Set Content-Type header
                         .header("Authorization", "Bearer " + LoginManager.getAccess())
                         .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body

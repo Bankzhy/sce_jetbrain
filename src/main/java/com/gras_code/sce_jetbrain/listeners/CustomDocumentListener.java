@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain.listeners;/* ==========================================================
+package com.gras_code.sce_jetbrain.listeners;/* ==========================================================
 File:        CustomDocumentListener.java
 Description: Logs time from document change events.
 Maintainer:  WakaTime <support@wakatime.com>
@@ -15,8 +15,8 @@ import com.intellij.openapi.editor.event.DocumentEvent;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import net.codeoasis.sce_jetbrain.OasisActivator;
-import net.codeoasis.sce_jetbrain.models.LineStats;
+import com.gras_code.sce_jetbrain.OasisActivator;
+import com.gras_code.sce_jetbrain.models.LineStats;
 
 public class CustomDocumentListener implements BulkAwareDocumentListener.Simple {
     @Override

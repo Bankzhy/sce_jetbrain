@@ -1,4 +1,4 @@
-package net.codeoasis.sce_jetbrain.models;
+package com.gras_code.sce_jetbrain.models;
 
 import java.math.BigDecimal;
 

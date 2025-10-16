@@ -5,15 +5,15 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Code Oasis</name>
+    <name>GRAS</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="kubusame.company@gmail.com" url="https://www.codeoasis.net">KUBUSAME</vendor>
+    <vendor email="kubusame.company@gmail.com" url="http://www.gras-code.com">KUBUSAME</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[A Code Oasis plugin for JetBrains IDEs' to manage your code snippets. You can access the www.codeoasis.net to check the detail.]]></description>
+    <description><![CDATA[A GRAS plugin for JetBrains IDEs' to manage your code status. You can access the www.gras-code.com to check the detail.]]></description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -23,18 +23,29 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="Snippet Save Notification" displayType="BALLOON"/>
-        <postStartupActivity implementation="net.codeoasis.sce_jetbrain.OasisStartupActivity" />
+        <postStartupActivity implementation="com.gras_code.sce_jetbrain.OasisStartupActivity" />
     </extensions>
     <actions>
-        <action id="SaveSnippet" class="net.codeoasis.sce_jetbrain.SaveSnippetAction" text="Save as Snippet"
+        <action id="SaveSnippet" class="com.gras_code.sce_jetbrain.SaveSnippetAction" text="Save as Snippet"
                 description="Save as snippet" icon="/icons/16-icon.png">
             <add-to-group group-id="EditorPopupMenu"/>
         </action>
-        <action id="SaveKnowledgeCard" class="net.codeoasis.sce_jetbrain.SaveKnowledgeCardAction" text="Save as Knowledge Card"
+        <action id="SaveKnowledgeCard" class="com.gras_code.sce_jetbrain.SaveKnowledgeCardAction" text="Save as Knowledge Card"
                 description="Save as knowledge card" icon="/icons/16-icon.png">
             <add-to-group group-id="EditorPopupMenu"/>
         </action>
-        <action id="LoginAction" class="net.codeoasis.sce_jetbrain.LoginAction" text="Code Oasis Login" description="Login Code Oasis"   icon="/icons/16-icon.png">
+<!--        <group id="SaveLongMethod" text="Save as Long Method" description="Save as Long Method" icon="/icons/16-icon.png" popup="true">-->
+<!--            <action id="PositiveLongMethod" class="com.gras_code.sce_jetbrain.SaveKnowledgeCardAction" text="PositiveLongMethod"-->
+<!--                    description="PositiveLongMethod" icon="/icons/16-icon.png">-->
+<!--            </action>-->
+<!--            <action id="NegativeLongMethod" class="com.gras_code.sce_jetbrain.SaveKnowledgeCardAction" text="NegativeLongMethod"-->
+<!--                    description="NegativeLongMethod" icon="/icons/16-icon.png">-->
+<!--            </action>-->
+<!--            <separator/>-->
+<!--                <add-to-group group-id="EditorPopupMenu"/>-->
+<!--            <separator/>-->
+<!--        </group>-->
+        <action id="LoginAction" class="com.gras_code.sce_jetbrain.LoginAction" text="GRAS Login" description="Login GRAS" icon="/icons/16-icon.png">
             <add-to-group group-id="ToolsMenu" />
         </action>
     </actions>
